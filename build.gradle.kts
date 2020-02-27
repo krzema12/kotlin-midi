@@ -1,9 +1,9 @@
 plugins {
-    id 'org.jetbrains.kotlin.multiplatform' version '1.3.61'
+    kotlin("multiplatform") version "1.3.61"
 }
 
-group 'it.krzeminski'
-version '1.0-SNAPSHOT'
+group = "it.krzeminski"
+version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -18,24 +18,24 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation kotlin('stdlib-common')
+                implementation(kotlin("stdlib-common"))
             }
         }
         commonTest {
             dependencies {
-                implementation kotlin('test-common')
-                implementation kotlin('test-annotations-common')
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
             }
         }
-        jvmMain {
+        val jvmMain by getting {
             dependencies {
-                implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+                implementation(kotlin("stdlib-jdk8"))
             }
         }
-        jvmTest {
+        val jvmTest by getting {
             dependencies {
-                implementation 'org.jetbrains.kotlin:kotlin-test'
-                implementation 'org.jetbrains.kotlin:kotlin-test-junit'
+                implementation(kotlin("test"))
+                implementation(kotlin("test-junit"))
             }
         }
     }
