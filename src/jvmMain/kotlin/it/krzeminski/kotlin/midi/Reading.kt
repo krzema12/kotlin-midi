@@ -36,9 +36,11 @@ private fun DataInputStream.readHeaderChunk() : HeaderChunk {
     val chunkTypeString = readChunkTypeString()
     require(chunkTypeString == "MThd") { "First chunk should be header, and chunk type '$chunkTypeString' found!" }
     val length = readInt()
-    require(length == 6) { "Header chunk should have 6 bytes, and $length found!" }
-    return HeaderChunk(
+    val chunk = HeaderChunk(
         format = readShort(),
         numberOfTracks = readShort().toInt(),
         division = readShort().toInt())
+    val numberOfBytesUnderstoodFromHeaderChunk = 6
+    skip((length - numberOfBytesUnderstoodFromHeaderChunk).toLong()) // In case a new field appears in the header.
+    return chunk
 }
