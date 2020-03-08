@@ -11,13 +11,14 @@ fun InputStream.readMidi(): MidiFile {
     with (DataInputStream(this)) {
         val headerChunk =  readHeaderChunk()
         val tracks = (1..headerChunk.numberOfTracks).mapNotNull {
-            val chunk = when (readChunkTypeString()) {
-                "MTrk" -> Track
-                else -> null // "Alien chunk", should be omitted.
+            val trackOrNull = when (readChunkTypeString()) {
+                "MTrk" -> readTrackChunk()
+                else ->  {
+                    skipAlienChunk()
+                    null
+                }
             }
-            val chunkLength = readInt()
-            skip(chunkLength.toLong())
-            chunk
+            trackOrNull
         }
         return MidiFile(tracks)
     }
@@ -43,4 +44,15 @@ private fun DataInputStream.readHeaderChunk() : HeaderChunk {
     val numberOfBytesUnderstoodFromHeaderChunk = 6
     skip((length - numberOfBytesUnderstoodFromHeaderChunk).toLong()) // In case a new field appears in the header.
     return chunk
+}
+
+private fun DataInputStream.readTrackChunk(): Track {
+    val length = readInt()
+    skip(length.toLong())
+    return Track
+}
+
+private fun DataInputStream.skipAlienChunk() {
+    val length = readInt()
+    skip(length.toLong())
 }
