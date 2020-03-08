@@ -5,9 +5,9 @@ import kotlin.test.assertEquals
 
 class EndToEndTest {
     @Test
-    fun parsingHeaders() {
+    fun simpleSong_parsingHeaders() {
         // given
-        val testMidiFile = javaClass.classLoader.getResource("Mario game - Overworld.mid")?.openStream()
+        val testMidiFile = javaClass.classLoader.getResource("Simple Song.mid")?.openStream()
             ?: throw RuntimeException("Could not load test resource!")
 
         // when
@@ -15,7 +15,7 @@ class EndToEndTest {
 
         // then
         with (parsedMidi) {
-            assertEquals(5, tracks.size)
+            assertEquals(1, tracks.size)
         }
     }
 }
