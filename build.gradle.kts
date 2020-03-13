@@ -9,6 +9,10 @@ repositories {
     mavenCentral()
 }
 
+tasks.withType<Test>().all {
+    useJUnitPlatform { }
+}
+
 kotlin {
     /* Targets configuration omitted. 
     *  To find out how to configure the targets, please follow the link:
@@ -36,6 +40,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(kotlin("test-junit"))
+                implementation("io.kotest:kotest-runner-junit5-jvm:4.0.0-BETA2")
             }
         }
     }
