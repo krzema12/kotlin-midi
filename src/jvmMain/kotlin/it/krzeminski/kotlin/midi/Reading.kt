@@ -7,6 +7,7 @@ import kotlin.math.pow
 
 // http://www.music.mcgill.ca/~ich/classes/mumt306/StandardMIDIfileformat.html
 // https://github.com/colxi/midi-parser-js/blob/master/src/main.js
+// http://www.somascape.org/midi/tech/mfile.html
 
 fun InputStream.readMidi(): MidiFile {
     with (DataInputStream(this)) {
@@ -98,6 +99,7 @@ private fun DataInputStream.readMetaEvent(): MetaEvent? {
     val (length, _) = readVariableLengthQuantity()
 
     return when (type) {
+        0x21u.toUByte() -> readMidiPortMetaEvent()
         0x2Fu.toUByte() -> EndOfTrackMetaEvent
         0x51u.toUByte() -> readSetTempoMetaEvent()
         0x58u.toUByte() -> readTimeSignatureMetaEvent()
@@ -166,6 +168,12 @@ private fun DataInputStream.readSetTempoMetaEvent(): SetTempoMetaEvent {
     val byte3 = readUnsignedByte()
     return SetTempoMetaEvent(
         microsecondsPerMidiQuarterNote = (byte1*0x10000 + byte2*0x100 + byte3))
+}
+
+private fun DataInputStream.readMidiPortMetaEvent(): MidiPortMetaEvent {
+    val port = readByte().toInt() and 0b011111111
+    return MidiPortMetaEvent(
+        port = port)
 }
 
 private fun DataInputStream.skipAlienChunk() {

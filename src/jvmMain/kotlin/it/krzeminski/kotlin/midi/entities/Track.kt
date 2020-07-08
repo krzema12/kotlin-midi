@@ -34,6 +34,10 @@ data class SetTempoMetaEvent(
     val microsecondsPerMidiQuarterNote: Int
 ) : MetaEvent()
 
+data class MidiPortMetaEvent(
+    val port: Int
+) : MetaEvent()
+
 object EndOfTrackMetaEvent : MetaEvent()
 
 data class ControlChangeMidiEvent(
