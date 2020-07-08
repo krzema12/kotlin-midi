@@ -52,5 +52,6 @@ data class ProgramChangeMidiEvent(
 ) : MidiEvent()
 
 data class NoteOnMidiEvent(
+    val channel: Int,
     val note: Note,
     val velocity: Int) : MidiEvent()

@@ -30,18 +30,18 @@ class EndToEndTest {
                 TrackEvent(deltaTime=0, event=ControlChangeMidiEvent(channel=0, controller=91, newValue=0)),
                 TrackEvent(deltaTime=0, event=ControlChangeMidiEvent(channel=0, controller=93, newValue=0)),
                 TrackEvent(deltaTime=0, event=MidiPortMetaEvent(port=0)),
-                TrackEvent(deltaTime=0,    event=NoteOnMidiEvent(note=Note(C, 5), velocity=80)),
-                TrackEvent(deltaTime=1823, event=NoteOnMidiEvent(note=Note(C, 5), velocity=0)),
-                TrackEvent(deltaTime=97,   event=NoteOnMidiEvent(note=Note(D, 5), velocity=80)),
-                TrackEvent(deltaTime=227,  event=NoteOnMidiEvent(note=Note(D, 5), velocity=0)),
-                TrackEvent(deltaTime=13,   event=NoteOnMidiEvent(note=Note(D, 5), velocity=80)),
-                TrackEvent(deltaTime=227,  event=NoteOnMidiEvent(note=Note(D, 5), velocity=0)),
-                TrackEvent(deltaTime=13,   event=NoteOnMidiEvent(note=Note(E, 5), velocity=80)),
-                TrackEvent(deltaTime=455,  event=NoteOnMidiEvent(note=Note(E, 5), velocity=0)),
-                TrackEvent(deltaTime=25,   event=NoteOnMidiEvent(note=Note(D, 5), velocity=80)),
-                TrackEvent(deltaTime=911,  event=NoteOnMidiEvent(note=Note(D, 5), velocity=0)),
-                TrackEvent(deltaTime=49,   event=NoteOnMidiEvent(note=Note(E, 5), velocity=80)),
-                TrackEvent(deltaTime=1823, event=NoteOnMidiEvent(note=Note(E, 5), velocity=0))
+                TrackEvent(deltaTime=0,    event=NoteOnMidiEvent(channel=0, note=Note(C, 5), velocity=80)),
+                TrackEvent(deltaTime=1823, event=NoteOnMidiEvent(channel=0, note=Note(C, 5), velocity=0)),
+                TrackEvent(deltaTime=97,   event=NoteOnMidiEvent(channel=0, note=Note(D, 5), velocity=80)),
+                TrackEvent(deltaTime=227,  event=NoteOnMidiEvent(channel=0, note=Note(D, 5), velocity=0)),
+                TrackEvent(deltaTime=13,   event=NoteOnMidiEvent(channel=0, note=Note(D, 5), velocity=80)),
+                TrackEvent(deltaTime=227,  event=NoteOnMidiEvent(channel=0, note=Note(D, 5), velocity=0)),
+                TrackEvent(deltaTime=13,   event=NoteOnMidiEvent(channel=0, note=Note(E, 5), velocity=80)),
+                TrackEvent(deltaTime=455,  event=NoteOnMidiEvent(channel=0, note=Note(E, 5), velocity=0)),
+                TrackEvent(deltaTime=25,   event=NoteOnMidiEvent(channel=0, note=Note(D, 5), velocity=80)),
+                TrackEvent(deltaTime=911,  event=NoteOnMidiEvent(channel=0, note=Note(D, 5), velocity=0)),
+                TrackEvent(deltaTime=49,   event=NoteOnMidiEvent(channel=0, note=Note(E, 5), velocity=80)),
+                TrackEvent(deltaTime=1823, event=NoteOnMidiEvent(channel=0, note=Note(E, 5), velocity=0))
             ), tracks[0].events)
         }
     }

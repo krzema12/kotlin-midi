@@ -125,6 +125,7 @@ private fun DataInputStream.readNoteOnMidiEvent(channel: Int): MidiEvent {
     val note = readByte().toInt() and 0b011111111
     val velocity = readByte().toInt() and 0b011111111
     return NoteOnMidiEvent(
+        channel = channel,
         note = note.toNote(),
         velocity = velocity)
 }
